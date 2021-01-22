@@ -1,10 +1,10 @@
 [client]
 
-database = DjangoModel
+database = DatabaseName
 
-user = summer01
+user = Username
 
-password = summer
+password = password
 
 host = 127.0.0.1
 
