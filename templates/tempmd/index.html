@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <style>
+        #ad{
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: red">这是第一个页面</h1>
+    {#<!- 这是模板变量的语法{{ name }}#}
+    <p>现在的时间是：{{ now }}</p>
+    {# 过滤器语法{{ name|过滤器:格式 #}
+    <p>现在的时间是：{{ now|date:"Y年m月d日 H:i:s" }}</p>
+    <div id="ad">
+        {% include 'tempmd/ad.html' %}
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="{% static 'tempmd/js/ad.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[client]
+
+database = DjangoModel
+
+user = summer01
+
+password = summer
+
+host = 127.0.0.1
+
+post = 3306
+default-character-set = utf8

@@ -1,0 +1,53 @@
+{% load static %}
+{% load diy_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解模板标签</title>
+    <link rel="stylesheet" href="{% static 'tempmd/css/undtag.css' %}">
+</head>
+<body>
+    <h1 style="color: skyblue">这是理解自定义过滤器的页面</h1>
+    <p>我是一个学生列表：{{ students }}</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        {# 使用模板标签循环输出 #}
+        {% for student in students %}
+            <tr>
+                <td><a href="{% url 'tempmodel:detail' student.name %}">{{ forloop.counter }}</a></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex|to_sex }}</td>  {# 使用比较方便，和普通过滤器没什么分别 #}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        {# 使用模板标签循环输出 #}
+        {% for student in students %}
+            <tr>
+                <td><a href="{% url 'tempmodel:detail' student.name %}">{{ forloop.counter }}</a></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex|to_sex:"en" }}</td>  {# 使用比较方便，和普通过滤器没什么分别 #}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

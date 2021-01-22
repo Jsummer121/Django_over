@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板变量衍生</title>
+    {#  最基本的引用  #}
+    {#  <link rel="stylesheet" href="/static/tempmd/css/test2.css">  #}
+    {#  使用模板标签导入  #}
+    <link rel="stylesheet" href="{% static "/tempmd/css/test2.css" %}">
+</head>
+<body>
+    <h1 style="color: skyblue">这是模板变量的衍生测试</h1>
+    <p>现在的时间是:{{ now|date:"Y年m月d日 H:i:s" }}</p>
+    <p>我的列表是:{{ li }}</p>
+    <p>我的字典是:{{ stu }}</p>
+    <p>我是字符串:{{ st }}</p>
+    {# 有关列表的过滤器{{ name|过滤器:值 }} #}
+    <p>我是列表的第一个值（1）:{{ li.0 }}；（2）:{{ li|first }}</p>
+    <p>我是列表的最后一个值:{{ li|last }}</p>
+    <p>我是列表的最后一个值加6:{{ li.2|add:6 }}</p>
+    <p>我是列表的最后一个值加'6':{{ li.2|add:'6' }}</p>
+    <p>我是列表的最后一个值加'a':{{ li.2|add:'a' }}</p>
+    <p>我是列表的切片:{{ li|slice:'::-1' }}</p>
+    <p>我是字符串的拼接:{{ li|join:'//' }}</p>
+    <p>我是字符串首字母大写:{{ st|capfirst }}</p>
+    <p>我是字符串小写:{{ st|lower }}</p>
+    <p>我是字符串大写:{{ st|upper }}</p>
+    <p>我是字符串长度:{{ st|length }}</p>
+    {#  组织脚本攻击  #}
+    <p>{{ js }}</p>
+</body>
+</html>

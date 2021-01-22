@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{# 基础使用 #}
+{#    {% for student in object_list %}#}
+{#        <p>{{ student }}</p>#}
+{#    {% endfor %}#}
+
+{# 使用新的模板名 #}
+    {% for student in students %}
+        <p>{{ student }}</p>
+    {% endfor %}
+</body>
+</html>

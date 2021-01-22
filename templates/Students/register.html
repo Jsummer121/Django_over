@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        {# 以前的写法 #}
+{#        测试：<input type="text">#}
+        {# 使用form表单，as_p是在每一个标签外面再添加一个p标签 #}
+        {{ form.as_p }}
+        <input type="submit" value="注册">
+    </form>
+</body>
+</html>

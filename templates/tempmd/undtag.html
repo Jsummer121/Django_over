@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解模板标签</title>
+    <link rel="stylesheet" href="{% static 'tempmd/css/undtag.css' %}">
+</head>
+<body>
+    <h1 style="color: skyblue">这是理解模板标签的页面</h1>
+    <p>我是一个学生列表：{{ students }}</p>
+
+    <p>使用表格将数据美化：</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>{{ students.0.name }}</td>
+            <td>{{ students.0.age }}</td>
+            <td>{{ students.0.hoppy }}</td>
+            <td>{{ students.0.sex }}</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>{{ students.1.name }}</td>
+            <td>{{ students.1.age }}</td>
+            <td>{{ students.1.hoppy }}</td>
+            <td>{{ students.1.sex }}</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>{{ students.2.name }}</td>
+            <td>{{ students.2.age }}</td>
+            <td>{{ students.2.hoppy }}</td>
+            <td>{{ students.2.sex }}</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>{{ students.3.name }}</td>
+            <td>{{ students.3.age }}</td>
+            <td>{{ students.3.hoppy }}</td>
+            <td>{{ students.3.sex }}</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>{{ students.4.name }}</td>
+            <td>{{ students.4.age }}</td>
+            <td>{{ students.4.hoppy }}</td>
+            <td>{{ students.4.sex }}</td>
+        </tr>
+    </table>
+
+    <p>使用模板标签，简化步骤：</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        {# 使用模板标签循环输出 #}
+        {% for student in students %}
+            <tr>
+                {# 使用计数 #}
+                <td>{{ forloop.counter }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>使用url标签：</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        {# 使用模板标签循环输出 #}
+        {% for student in students %}
+            <tr>
+                <td><a href="{% url 'tempmodel:detail' student.name %}">{{ forloop.counter }}</a></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>使用if标签：</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+        </tr>
+        {# 使用模板标签循环输出 #}
+        {% for student in students %}
+            <tr {% if student.sex == "女" %}style="color: red"{% endif %} >
+                <td><a href="{% url 'tempmodel:detail' student.name %}">{{ forloop.counter }}</a></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex }}</td>
+            </tr>
+        {% endfor %}
+        {% with stu_name=students.name %}
+
+        {% endwith %}
+    </table>
+
+</body>
+</html>

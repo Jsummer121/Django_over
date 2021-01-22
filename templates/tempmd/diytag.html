@@ -1,0 +1,56 @@
+{% load static %}
+{% load diy_tag %}
+{% load diy_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>理解模板</title>
+    <link rel="stylesheet" href="{% static 'tempmd/css/undtag.css' %}">
+</head>
+<body>
+    <h1 style="color: skyblue">这是理解自定义标签的页面</h1>
+    <p>现在的时间是：{{ now }}</p>
+    <p>现在的时间是：{{ now|date:"Y年m月d日 H:i:s" }}</p>
+    {# <p>我是通过自定义模板标签实现的时间：{% currtag "%Y年%m月%d日 %H:%M:%S" %}</p> #}
+    <p>我是通过自定义模板标签+上下文实现的时间：{% currtag %}</p>
+    <p>下面是包含标签的模型：</p>
+    <table>
+        <tr>
+            <td>序号：</td>
+            <td>姓名：</td>
+            <td>年龄：</td>
+            <td>爱好：</td>
+            <td>性别：</td>
+            <td>课程：</td>
+        </tr>
+        {% for student in students %}
+            <tr>
+                <td><a href="{% url 'tempmodel:detail' student.name %}">{{ forloop.counter }}</a></td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.hoppy }}</td>
+                <td>{{ student.sex|to_sex }}</td>
+{#                <td>{{ student.course }}</td>#} {# 最基础的获取 #}
+                {# 使用for循环获取 #}
+{#                <td>#}
+{#                    {% for course in student.course %}#}
+{#                        {{ course }}#}
+{#                    {% endfor %}#}
+{#                </td>#}
+                {# 使用li标签美化 #}
+{#                <td>#}
+{#                    <ul>#}
+{#                        {% for course in student.course %}#}
+{#                        <li>{{ course }}</li>#}
+{#                        {% endfor %}#}
+{#                    </ul>#}
+{#                </td>#}
+                {# 使用自定义包含标签 #}
+                <td>{% show_list_as_ul student.course %}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

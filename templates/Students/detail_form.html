@@ -1,0 +1,43 @@
+{% extends 'Students/base.html' %}
+{% load students_tag %}
+{% block title %}
+    学生详情页
+{% endblock %}
+
+{% block section %}
+    {{ section }}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post"  class="form-horizontal">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+                <div class="col-sm-2">
+                    {% add_class field "form-control" %}  {# 给某个字段添加某个值 #}
+                </div>
+                {# 错误展示部分： #}
+                {% for error in field.errors %}
+                    <label class="col-sm-2 control-label {% if field.errors %} has-error{% endif %} ">{{ error }}</label>
+                {% endfor %}
+            </div>
+        {% endfor %}
+{#        {{ detail_form.as_p }}#}
+        {% for field in detail_form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}" class="col-sm-2 control-label">{{ field.label }}</label>
+                <div class="col-sm-2">
+                    {% add_class field "form-control" %}  {# 给某个字段添加某个值 #}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <a href="{% url "students:students_list" %}" class="btn btn-primary">Return</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}

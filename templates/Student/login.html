@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <h2>第{{ num }}次访问</h2>
+    <form action="{% url 'students:login' %}" method="post">
+        {% csrf_token %}
+        <p>username: <input type="text" name="username" placeholder="pleacs put username"></p>
+        <p>password: <input type="password" name="password"  placeholder="pleacs put password"></p>
+        <p><input type="submit" value="login"></p>
+    </form>
+</body>
+</html>

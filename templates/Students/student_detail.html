@@ -1,0 +1,77 @@
+{% extends 'Students/base.html' %}
+{% load students_tag %}
+{% block title %}
+    学生详情页
+{% endblock %}
+
+{% block section %}
+    {{ section }}
+{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">姓名</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="请输入姓名" name="name"  value="{{ student.name }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age" class="col-sm-2 control-label">年龄</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="age" placeholder="请输入年龄" name="age"  value="{{ student.age }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age" class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-2">
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio1" value=1
+                            {% if student.sex != 0 %}
+                                checked
+                            {% endif %} > 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineRadio2" value=0
+                            {% if student.sex == 0 %}
+                                checked
+                            {% endif %}> 女
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qq" class="col-sm-2 control-label">qq</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="qq" placeholder="请输入qq号" name="qq" value="{{ student.qq }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 control-label">电话</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="phone" placeholder="请输入电话" name="phone" value="{{ student.phone }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="grade" class="col-sm-2 control-label">年级</label>
+            <div class="col-sm-2">
+                <select class="form-control" name="grade">
+                    {% grade_option student %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="college" class="col-sm-2 control-label">毕业院校</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="college" placeholder="请输入毕业院校" name="college" value="{{ student.studentdetail.college }}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a href="{% url "students:student_add" %}"><button type="submit" class="btn btn-primary">Save</button></a>
+                <button type="reset" class="btn btn-primary">Reset</button>
+                <a href="{% url "students:students_list" %}" class="btn btn-primary">Return</a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
